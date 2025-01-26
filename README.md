@@ -1,4 +1,4 @@
-#  useTry 
+#  use-try 
 
 Clean up your code base by removing those ugly try-catch-finally blocks!
 
@@ -14,9 +14,9 @@ Clean up your code base by removing those ugly try-catch-finally blocks!
 
 ## About
 
-Working in a code base where methods are expected to `throw` can lead to logic being cluttered with `try-catch` blocks. This also results in poor code design. 🤢
+Working in a code base where methods are expected to `throw` can lead to logic being cluttered with `try-catch` blocks. This also results in poor code design.
 
-`useTry` solves this problem by abstracting the `try-catch` logic into an external method, while giving you the flexibility to handle errors appropriately and access the return value of methods that may throw. 🤘🤘
+`useTry` solves this problem by abstracting the `try-catch` logic into an external method, while giving you the flexibility to handle errors appropriately and access the return value of methods that may throw.
 
 ## Installation
 
@@ -41,8 +41,55 @@ const { useTry, useTryAsync } = require("use-try");
 ```ts
 import { useTry, useTryAsync } from "use-try";
 ```
+#### Example Sync
+
+```ts
+// Synchronous task example
+const syncTask = () => {
+  const result = 2 + 2;
+  if (result !== 4) {
+    throw new Error("The result is invalid");
+  }
+  return result;
+};
+
+// Using useTry to execute the task
+const result = useTry(syncTask, "Error executing the synchronous task");
+
+if (result.success) {
+  console.log("Task executed successfully:", result.data); // Output: 4
+} else {
+  console.error("Error:", result.error); // If it fails, logs the error
+}
+
+```
 
 
+#### Example Async
+
+```ts
+
+// Asynchronous task example
+const asyncTask = async () => {
+  const response = await fetch("https://api.example.com/data");
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return response.json();
+};
+
+// Using async/await to execute the asynchronous task
+async function executeAsyncTask() {
+  const result = await useTryAsync(asyncTask);
+
+  if (result.success) {
+    console.log("Asynchronous task executed successfully:", result.data);
+  } else {
+    console.error("Error:", result.error);
+  }
+}
+
+```
 
 ## 📄 License
 
