@@ -1,38 +1,12 @@
 name: Publish to NPM
 
 on:
-  release:
-    types: [created] # Acionado ao criar uma nova release no GitHub
+  push:
+    branches:
+      - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install dependencies
-        run: npm i
-
-      - name: Run tests
-        run: npm run test
-
-      - name: Build the package
-        run: npm run build # Certifique-se de que o script "build" está definido no seu package.json
-
-      - name: Save built artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-artifacts
-          path: ./dist # Ajuste para o diretório onde seu código buildado é gerado
-
-  publish-npm:
-    needs: build
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -44,13 +18,14 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org/
 
-      - name: Download built artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: build-artifacts
-
       - name: Install dependencies
         run: npm i
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build the package
+        run: npm run build
 
       - name: Publish to NPM
         run: npm publish
