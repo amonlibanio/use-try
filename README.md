@@ -5,10 +5,8 @@ Clean up your code by removing those ugly `try-catch` blocks!
 ---
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/use-try"><img src="https://img.shields.io/badge/npm-use--try-brightgreen.svg" alt="npm package" /></a>
   <a href="https://www.npmjs.com/package/use-try"><img src="https://img.shields.io/npm/v/use-try.svg" alt="npm version" /></a>
   <a href="https://www.npmjs.com/package/use-try"><img src="https://img.shields.io/npm/dt/use-try.svg" alt="npm downloads" /></a>
-  <a href="https://www.npmjs.com/package/use-try"><img src="https://img.shields.io/travis/amonlibanio/use-try.svg" alt="build status" /></a>
   <a href="https://www.npmjs.com/package/use-try"><img src="https://img.shields.io/npm/l/use-try.svg" alt="license" /></a>
 </p>
 
