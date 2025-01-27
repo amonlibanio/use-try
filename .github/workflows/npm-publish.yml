@@ -20,7 +20,7 @@ jobs:
         run: npm i
 
       - name: Run tests
-        run: npm test
+        run: npm run test
 
       - name: Build the package
         run: npm run build # Certifique-se de que o script "build" está definido no seu package.json
