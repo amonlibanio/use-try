@@ -21,6 +21,11 @@ jobs:
       - name: Install dependencies
         run: npm i
 
+      - name: Update version
+        run: |
+          npm version patch -m "chore(release): %s" # Alterar para 'minor' ou 'major' se necessário
+          git push origin main --tags
+
       - name: Run tests
         run: npm test
 
